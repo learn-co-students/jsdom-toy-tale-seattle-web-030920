@@ -1,6 +1,5 @@
 let addToy = false;
 
-
 document.addEventListener("DOMContentLoaded", () => {
   const addBtn = document.querySelector("#new-toy-btn");
   const toyFormContainer = document.querySelector(".container");
@@ -15,18 +14,14 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 
 // fetch all toys! 
-
   fetch("http://localhost:3000/toys")
   .then(resp=> resp.json())
   .then(resp => makeToys(resp))
 
 //Creating New Toy
   const form= toyFormContainer.querySelector("form")
-  console.log(form)
   form.addEventListener("submit", function(e){
   e.preventDefault()
-
-
   const data = { name: e.target.name.value, image: e.target.image.value, likes: 0};
 
   fetch('http://localhost:3000/toys', {
@@ -38,7 +33,8 @@ document.addEventListener("DOMContentLoaded", () => {
   })
   .then((response) => response.json())
   .then((data) => {
-    console.log('Success:', makeCard(data));
+    makeCard(data)
+    console.log('Success:')
   })
   .catch((error) => {
     console.error('Error:', error);
@@ -60,13 +56,21 @@ function makeCard(toy){
   let button= document.createElement("button")
   button.innerText= "Like"
   button.className="like-btn"
+  toyDiv.appendChild(button)
+  div.appendChild(toyDiv)
 
 //event stuff for like button
-
 button.addEventListener('click', function(e){
 
-  let newlikes=toy.likes+1
+  fetch(`http://localhost:3000/toys/${toy.id}`)
+  .then(resp=> resp.json())
+  .then(resp => updateLikes(resp, e))
+  
+})
+}
 
+function updateLikes(toy, e){
+  let newlikes=toy.likes+1
   fetch(`http://localhost:3000/toys/${toy.id}`, {
     method: 'PATCH',
     headers: {
@@ -77,19 +81,11 @@ button.addEventListener('click', function(e){
   })
   .then((response) => response.json())
   .then((data) => {
-    console.log('Success:', updateLikes(data, e.target.parentNode));
+    let p= e.target.parentNode.querySelector("p")
+    p.innerText=`${data.likes} Likes`
+    console.log('Success:')
   })
   .catch((error) => {
     console.error('Error:', error);
-  });
-
-})
-
-  toyDiv.appendChild(button)
-  div.appendChild(toyDiv)
-}
-
-function updateLikes(data, toydiv) {
-let p= toydiv.querySelector("p")
-p.innerText=`${data.likes} Likes`
+  })
 }

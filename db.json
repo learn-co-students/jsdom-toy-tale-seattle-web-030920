@@ -4,13 +4,13 @@
       "id": 1,
       "name": "Woody",
       "image": "http://www.pngmart.com/files/3/Toy-Story-Woody-PNG-Photos.png",
-      "likes": 12
+      "likes": 18
     },
     {
       "id": 2,
       "name": "Buzz Lightyear",
       "image": "http://www.pngmart.com/files/6/Buzz-Lightyear-PNG-Transparent-Picture.png",
-      "likes": 13
+      "likes": 21
     },
     {
       "id": 3,
@@ -63,32 +63,8 @@
     {
       "name": "poly",
       "image": "https://lolsdolls.com/wp-content/uploads/2019/04/Polly-pocket-doll-4.png",
-      "likes": 0,
+      "likes": 2,
       "id": 11
-    },
-    {
-      "likes": 6,
-      "id": 12
-    },
-    {
-      "likes": 6,
-      "id": 13
-    },
-    {
-      "likes": 6,
-      "id": 14
-    },
-    {
-      "likes": 6,
-      "id": 15
-    },
-    {
-      "likes": 6,
-      "id": 16
-    },
-    {
-      "likes": 6,
-      "id": 17
     }
   ]
 }
