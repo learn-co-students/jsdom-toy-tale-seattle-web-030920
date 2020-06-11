@@ -1,27 +1,12 @@
 const addBtn = document.querySelector('#new-toy-btn')
 const toyForm = document.querySelector('.container')
-let addToy = false;
+let addToy = false
 let divCollect = document.querySelector('#toy-collection')
 
-// document.addEventListener("DOMContentLoaded", () => {
-//   const addBtn = document.querySelector("#new-toy-btn");
-//   const toyFormContainer = document.querySelector(".container");
-//   addBtn.addEventListener("click", () => {
-//     // hide & seek with the form
-//     addToy = !addToy;
-//     if (addToy) {
-//       toyFormContainer.style.display = "block";
-//     } else {
-//       toyFormContainer.style.display = "none";
-//     }
-//   });
-// });
 
-
-
-function getToys(){
+function getToys() {
   return fetch('http://localhost:3000/toys')
-  .then(res => res.json())
+    .then(res => res.json())
 }
 
 function postToy(toy_data) {
@@ -92,6 +77,8 @@ function renderToys(toy) {
   divCollect.append(divCard)
 }
 
+
+// add listener to 'Add Toy' button to show or hide form
 addBtn.addEventListener('click', () => {
   // hide & seek with the form
   addToy = !addToy
@@ -114,6 +101,3 @@ getToys().then(toys => {
     renderToys(toy)
   })
 })
-
-
-
